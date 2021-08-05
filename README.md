@@ -8,6 +8,24 @@ Additionally, the app needs to leverage the transaction history data through mai
 
 E -
 
+Savings Deposit: Process a deposit in the amount of $20 and impact the account balance accordingly.
+
+Savings Withdraw: Process a withdraw in the amount of $4 and impact the account balance accordingly.
+
+Savings Balance: use transaction list for withdraw and deposits to track and compute balance when needed. Using the two transaction examples above, and assuming the order is 1.) deposit and then 2.) withdraw, the balance should initially display $20 and then $16.
+
+Checking Deposit: Process a deposit in the amount of $20 and impact the account balance accordingly.
+
+Checking Withdraw: Process a withdraw in the amount of $4 and impact the account balance accordingly.
+
+Checking Balance: use transaction list for withdraw and deposits to track and compute balance when needed. Using the two transaction examples above, and assuming the order is 1.) deposit and then 2.) withdraw, the balance should initially display $20 and then $16.
+
+No negative balance: in the event a withdraw transaction will cause the account balance to go negative, it needs to be declined. Therefore logic is needed to check the proposed transaction against the current balance of the specific account - checking or savings, to determine whether it is permissible. Example, if checking account has a balance of $16, but a transaction is processing for a $20 withdraw, the transaction should be declined.
+
+Ongoing transactions - need to keep Checking and Savings transactions separate, but tracked together in the SINGLE list <Transaction>
+
+CSV file: the app must track transactions in its memory and upon specific transaction commands, or upon closing the app, the memory needs to be written to the CSV file. Then upon restarting the app, the data should be loaded to allow for instant and real time access to transaction history and account balances.
+
 D -
 
 You will compute balances by examining all the transactions in the history. For instance, if a user deposits 10 to their savings, then withdraws 8 from their savings, then deposits 25 to their checking, they have three transactions to consider. Compute the checking and saving balance, using the transaction list, when needed. In this case, their savings balance is 2 and their checking balance is 25.
