@@ -24,7 +24,7 @@ No negative balance: in the event a withdraw transaction will cause the account 
 
 Ongoing transactions - need to keep Checking and Savings transactions separate, but tracked together in the SINGLE list <Transaction>
 
-CSV file: the app must track transactions in its memory and upon specific transaction commands, or upon closing the app, the memory needs to be written to the CSV file. Then upon restarting the app, the data should be loaded to allow for instant and real time access to transaction history and account balances.
+CSV file: the app must track transactions in its memory and upon completing each transaction. Have a second command to update CSV based on transactions while app was open. Then upon restarting the app, the data should be loaded to allow for instant and real time access to transaction history and account balances.
 
 D -
 
@@ -32,24 +32,46 @@ You will compute balances by examining all the transactions in the history. For 
 
 The application should store a history of transactions in a SINGLE List<Transaction>.
 
-Your task is to design the Transaction class to support both checking and savings as well as deposits and withdraws.
+Your task is to design the <Transaction> class to support both checking and savings as well as deposits and withdraws. (like the Blackjack app tracked dealer and player cards in one lists)
 
-The application should load past transactions from a file when it first starts.
+Transaction History derived from one Transaction list:
 
-As a user I should be able to see the list of transactions designated savings.
+- User should be able to see the list of transactions designated savings.
+- User should be able to see the list of transactions designated checking.
 
-As a user I should be able to see the list of transactions designated checking.
-
-Never allow withdrawing more money than is available. That is, we cannot allow our checking or savings balances to go negative.
-
-When prompting for an amount to deposit or withdraw always ensure the amount is positive. The value we store in the Transaction shall be positive as well. (e.g. a Transaction that is a withdraw of 25 both inputs and records a positive 25)
-
-As a user I should have a menu option to make a deposit transaction for savings.
-As a user I should have a menu option to make a deposit transaction for checking.
-As a user I should have a menu option to make a withdraw transaction for savings.
-As a user I should have a menu option to make a withdraw transaction for checking.
-As a user I should have a menu option to see the balance of my savings and checking.
-
-The application should, after each transaction, write all the transactions to a file. This is the same file the application loads.
+Memory and CSV file updates - The application should, after each transaction, write all the transactions to a file. This is the same file the application loads when the app is initiated.
 
 A -
+
+Display Greeting
+
+- Welcome to First Bank of Suncoast
+
+Transaction menu tree - display all on one screen, do not create a decision tree with multiple entries to accomplish a task.
+
+Menu option for user to make a deposit transaction for savings.
+Menu option for user to make a deposit transaction for checking.
+Menu option for user to make a withdraw transaction for savings.
+Menu option for user to make a withdraw transaction for checking.
+Menu option for user to see the balance of my savings and checking.
+
+Deposit:
+
+- Checking
+- Savings
+
+Withdraw:
+
+- Checking
+- Savings
+
+Prevent a withdraw for an amount that is greater than the account balance. Neither checking or savings balances should never display a negative balance.
+
+Account History: Console.WriteLine generated based on date range entered by customer through Console.Read. Use LINQ for sorting based on transaction date.
+
+- Checking
+- Savings
+
+Statement (preformatted report that displays transaction history for last >= 30 days) Utilize LINQ expressions for pulling last 30 days and then sorting in ascending order.
+
+When prompting for an amount to deposit or withdraw always ensure the amount is positive. The value we store in the Transaction shall be positive as well. (e.g. a Transaction that is a withdraw of 25 both inputs and records a positive 25)
