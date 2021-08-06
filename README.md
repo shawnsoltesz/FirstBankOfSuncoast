@@ -28,11 +28,38 @@ CSV file: the app must track transactions in its memory and upon completing each
 
 D -
 
-You will compute balances by examining all the transactions in the history. For instance, if a user deposits 10 to their savings, then withdraws 8 from their savings, then deposits 25 to their checking, they have three transactions to consider. Compute the checking and saving balance, using the transaction list, when needed. In this case, their savings balance is 2 and their checking balance is 25.
+The app will compute balances by examining all the transactions in the history. For instance, if a user deposits 10 to their savings, then withdraws 8 from their savings, then deposits 25 to their checking, they have three transactions to consider. Compute the checking and saving balance, using the transaction list, when needed. In this case, their savings balance is 2 and their checking balance is 25.
 
 The application should store a history of transactions in a SINGLE List<Transaction>.
 
-Your task is to design the <Transaction> class to support both checking and savings as well as deposits and withdraws. (like the Blackjack app tracked dealer and player cards in one lists)
+Design the <Transaction> class to support both checking and savings accounts, as well as deposit and withdraw transactions. (like the Blackjack app tracked dealer and player cards in one lists -
+
+Transaction Type includes:
+
+1. Transaction Type [string]
+   a. Deposit
+   b. Withdraw
+
+2. Account Type [string] - could be a bool, but only T/F options and not suitable for scale
+   a. Checking
+   b. Savings
+
+3. Amount [integer]
+
+   // 3. Create a player hand
+   var player = new Hand();
+
+   // 4. Create a dealer hand
+   var dealer = new Hand();
+
+   // 5. Ask the deck for a card and place it in the player hand
+   // - the card is equal to the 0th index of the deck list
+   // 6. Ask the deck for a card and place it in the player hand
+   player.AddCards(deck.DealMultiple(2));
+
+   // 7. Ask the deck for a card and place it in the dealer hand
+   // 8. Ask the deck for a card and place it in the dealer hand
+   dealer.AddCards(deck.DealMultiple(2));)
 
 Transaction History derived from one Transaction list:
 
@@ -47,13 +74,16 @@ Display Greeting
 
 - Welcome to First Bank of Suncoast
 
-Transaction menu tree - display all on one screen, do not create a decision tree with multiple entries to accomplish a task.
+Transaction options - display all on one screen, do not create a decision tree with multiple layers for a drill down to accomplish a task.
 
-Menu option for user to make a deposit transaction for savings.
-Menu option for user to make a deposit transaction for checking.
-Menu option for user to make a withdraw transaction for savings.
-Menu option for user to make a withdraw transaction for checking.
-Menu option for user to see the balance of my savings and checking.
+- Menu option for user to make a deposit transaction for checking.
+- Menu option for user to make a deposit transaction for savings.
+- Menu option for user to make a withdraw transaction for checking.
+- Menu option for user to make a withdraw transaction for savings.
+- Menu option for user to see the balance of checking account.
+- Menu option for user to see the balance of savings account.
+
+(Potential Layout) -
 
 Deposit:
 
@@ -74,4 +104,7 @@ Account History: Console.WriteLine generated based on date range entered by cust
 
 Statement (preformatted report that displays transaction history for last >= 30 days) Utilize LINQ expressions for pulling last 30 days and then sorting in ascending order.
 
-When prompting for an amount to deposit or withdraw always ensure the amount is positive. The value we store in the Transaction shall be positive as well. (e.g. a Transaction that is a withdraw of 25 both inputs and records a positive 25)
+- Checking
+- Savings
+
+When prompting for an amount to withdraw, always compare the amount against the balance to ensure the balance amount after the transaction remains positive. Negative balances are forbidden. Upon processing the transaction, the balance value we store in the Transaction list shall be positive as well. (e.g. a Transaction that is a withdraw of $25 both inputs and records a positive $25)
