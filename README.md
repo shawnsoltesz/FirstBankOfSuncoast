@@ -26,7 +26,7 @@ Ongoing transactions - need to keep Checking and Savings transactions separate, 
 
 CSV file: the app must track transactions in its memory and upon completing each transaction. Have a second command to update CSV based on transactions while app was open. Then upon restarting the app, the data should be loaded to allow for instant and real time access to transaction history and account balances.
 
-D -
+D - CREATE _ REMOVE _ UPDATE \* D
 
 The app will compute balances by examining all the transactions in the history. For instance, if a user deposits 10 to their savings, then withdraws 8 from their savings, then deposits 25 to their checking, they have three transactions to consider. Compute the checking and saving balance, using the transaction list, when needed. In this case, their savings balance is 2 and their checking balance is 25.
 
@@ -46,22 +46,61 @@ Transaction Type includes:
 
 3. Amount [integer]
 
-   // 3. Create a player hand
-   var player = new Hand();
+4. Date [double]
 
-   // 4. Create a dealer hand
-   var dealer = new Hand();
+Console.ReadLine for user to enter amount
 
-   // 5. Ask the deck for a card and place it in the player hand
-   // - the card is equal to the 0th index of the deck list
-   // 6. Ask the deck for a card and place it in the player hand
-   player.AddCards(deck.DealMultiple(2));
+Transaction Flows:
+Checking Deposit >
+User enters amount >
+Create a transaction entry
 
-   // 7. Ask the deck for a card and place it in the dealer hand
-   // 8. Ask the deck for a card and place it in the dealer hand
-   dealer.AddCards(deck.DealMultiple(2));)
+Checking Withdraw >
+User enters amount >
+Check balance report for available funds
+If approved,
+create a transaction entry
+deduct amount from balance
+If denied, cancel transaction
 
-Transaction History derived from one Transaction list:
+Savings Deposit >
+User enters amount >
+Create a transaction entry
+
+Savings Withdraw >
+User enters amount >
+Check balance report for available funds
+If approved,
+create a transaction entry
+deduct amount from balance
+If denied, cancel transaction
+
+Balance Report (Use LINQ expressions to help with data)
+
+Checking Account >
+Compile all Deposits and Withdraws for Checking
+Sort Ascending by Date
+
+Savings Account >
+Compile all Deposits and Withdraws for Savings
+Sort Ascending by Date
+
+// 3. Create a player hand
+var player = new Hand();
+
+// 4. Create a dealer hand
+var dealer = new Hand();
+
+// 5. Ask the deck for a card and place it in the player hand
+// - the card is equal to the 0th index of the deck list
+// 6. Ask the deck for a card and place it in the player hand
+player.AddCards(deck.DealMultiple(2));
+
+// 7. Ask the deck for a card and place it in the dealer hand
+// 8. Ask the deck for a card and place it in the dealer hand
+dealer.AddCards(deck.DealMultiple(2));)
+
+Transaction History derived from one Transaction list: LINQ list capabilities
 
 - User should be able to see the list of transactions designated savings.
 - User should be able to see the list of transactions designated checking.
@@ -85,15 +124,17 @@ Transaction options - display all on one screen, do not create a decision tree w
 
 (Potential Layout) -
 
-Deposit:
+Checking:
 
-- Checking
-- Savings
+- Deposit
+- Withdraw
+- Balance
 
-Withdraw:
+Savings:
 
-- Checking
-- Savings
+- Deposit
+- Withdraw
+- Balance
 
 Prevent a withdraw for an amount that is greater than the account balance. Neither checking or savings balances should never display a negative balance.
 
