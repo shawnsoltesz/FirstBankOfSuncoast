@@ -34,56 +34,123 @@ The application should store a history of transactions in a SINGLE List<Transact
 
 Design the <Transaction> class to support both checking and savings accounts, as well as deposit and withdraw transactions. (like the Blackjack app tracked dealer and player cards in one lists -
 
-Transaction Type includes:
-
-1. Transaction Type [string]
-   a. Deposit
-   b. Withdraw
-
-2. Account Type [string] - could be a bool, but only T/F options and not suitable for scale
-   a. Checking
-   b. Savings
-
-3. Amount [integer]
-
-4. Date [double]
-
-Console.ReadLine for user to enter amount
-
 Transaction Flows:
-Checking Deposit >
-User enters amount >
-Create a transaction entry
+
+- Checking Deposit >
+  -- User enters amount >
+  --- Create a transaction entry
 
 Checking Withdraw >
-User enters amount >
-Check balance report for available funds
-If approved,
-create a transaction entry
-deduct amount from balance
+
+- User enters amount >
+- Check balance report for available funds
+  - use LINQ to tally all <AccountT>
+
+If sufficient funds,
+
+- deduct transacation amount against
+- create a transaction entry
+- deduct amount from balance
+
 If denied, cancel transaction
 
 Savings Deposit >
-User enters amount >
-Create a transaction entry
+
+- User enters amount >
+  -- Create a transaction entry
 
 Savings Withdraw >
-User enters amount >
-Check balance report for available funds
+
+- User enters amount >
+  -- Check balance report for available funds
+
 If approved,
-create a transaction entry
-deduct amount from balance
+
+- create a transaction entry
+- deduct amount from balance
+
 If denied, cancel transaction
+
+Transaction Type includes:
+
+a. Checking
+
+1.  Deposit
+2.  Withdraw
+
+If 1 = Transaction Type = Deposit (+)
+string typeCheckingDeposit = Deposit
+string accountCheckingDeposit = Checking
+
+If 2 = Transaction Type = Withdraw (-)
+string typeCheckingWithdraw = Withdraw
+string accountCheckingWithdraw = Checking
+
+b. Savings 4. Deposit 5. Withdraw
+
+b. Savings
+
+If 4 = Transaction Type = Deposit (+)
+string typeSavingsDeposit = Deposit
+string accountSavingsDeposit = Savings
+
+If 5 = Transaction Type = Withdraw (-)
+string typeSavingsWithdraw = Withdraw
+string accountSavingsWithdraw = Savings
+
+2. Account Type [string] - could be a bool, but only T/F options and not suitable for scale
+   a. Checking
+
+   1. Deposit
+   2. Withdraw
+
+   If 1 = Transaction Type = Deposit (+)
+   string typeCheckingDeposit = Deposit
+   string accountCheckingDeposit = Checking
+
+   If 2 = Transaction Type = Withdraw (-)
+   string typeCheckingWithdraw = Withdraw
+   string accountCheckingWithdraw = Checking
+
+b. Savings 4. Deposit 5. Withdraw
+
+b. Savings
+
+If 4 = Transaction Type = Deposit (+)
+string typeSavingsDeposit = Deposit
+string accountSavingsDeposit = Savings
+
+If 5 = Transaction Type = Withdraw (-)
+string typeSavingsWithdraw = Withdraw
+string accountSavingsWithdraw = Savings
+
+3. Date [double]
+
+   double date = {Date}
+
+4. Amount [integer]
+
+   int transactionAmount = Console.ReadLine();
+
+Receipt
+Console.WriteLine = ("######## -RECEIPT- ########\n\n");
+Console.WriteLine = ("$Date: {date}");
+Console.WriteLine = ("$Account: {});
+Console.WriteLine = ("$Transaction: {});
+Console.WriteLine = ("$Amount: ${transactionAmount}\n");
+Console.WriteLine = ("Thank you for banking with us!");
 
 Balance Report (Use LINQ expressions to help with data)
 
 Checking Account >
-Compile all Deposits and Withdraws for Checking
-Sort Ascending by Date
+
+- Compile all Deposits and Withdraws for Checking
+  -- Sort Ascending by Date
 
 Savings Account >
-Compile all Deposits and Withdraws for Savings
-Sort Ascending by Date
+
+- Compile all Deposits and Withdraws for Savings
+  -- Sort Ascending by Date
 
 // 3. Create a player hand
 var player = new Hand();
@@ -126,17 +193,45 @@ Transaction options - display all on one screen, do not create a decision tree w
 
 Checking:
 
-- Deposit
-- Withdraw
-- Balance
+- 1. Deposit
+- 2. Withdraw
+- 3. Statement
 
 Savings:
 
-- Deposit
-- Withdraw
-- Balance
+- 4. Deposit
+- 5. Withdraw
+- 6. Statement
+
+Transaction Class
+Date
+Account (Checking or Savings)
+Type (Deposit or Withdraw)
+Amount
+
+List:
+
+transactions = new List <Transaction>;
+
+newTransaction = new Date ();
+newTransaction = new Account ();
+newTransaction = new Type ();
+newTransaction = new Amount ();
+
+If 1: (Checking Deposit)
+
+transaction.Date = {Date.Time};
+transaction.Account = Checking
+transaction.Type = Deposit
+transaction.Amount = new Amount ();
+
+transactions.Add(transaction);
 
 Prevent a withdraw for an amount that is greater than the account balance. Neither checking or savings balances should never display a negative balance.
+
+Statement
+
+If
 
 Account History: Console.WriteLine generated based on date range entered by customer through Console.Read. Use LINQ for sorting based on transaction date.
 
