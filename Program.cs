@@ -145,6 +145,7 @@ namespace FirstBankOfSuncoast
                     transactions.Add(transaction);
 
                     Console.WriteLine("\n\n######## -RECEIPT- ########\n\n");
+                    Console.WriteLine("        Transaction Approved\n");
                     Console.WriteLine($"Date: {transaction.Date}");
                     Console.WriteLine($"Account: {transaction.Account}");
                     Console.WriteLine($"Transaction: {transaction.Type}");
