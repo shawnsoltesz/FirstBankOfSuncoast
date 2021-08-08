@@ -68,6 +68,23 @@ namespace FirstBankOfSuncoast
             }
         }
 
+        static int PromptForNegativeInteger(string prompt)
+        {
+            Console.Write(prompt);
+            int userInput;
+            var isThisGoodInput = Int32.TryParse(Console.ReadLine(), out userInput);
+
+            if (isThisGoodInput)
+            {
+                return userInput * -1;
+            }
+            else
+            {
+                //Console.WriteLine("This is not a valid entry. Action cancelled.");
+                return 0;
+            }
+        }
+
         static void Main(string[] args)
         {
             var transactions = new List<Transaction>();
@@ -75,6 +92,21 @@ namespace FirstBankOfSuncoast
             var transaction = new Transaction();
 
             var date = new DateTime(2008, 3, 15);
+            // var areAnyOldMovies = movies.Any(movie => movie.ReleasedDate.Year < 1965);
+            //var NewCheckingBalance = transactions.Sum(transaction.Account => transaction.Account = "Checking");
+
+
+
+            //- new var checkingBalance = LINQ expression bool true = Checking, to gather all transactions for Account - Checking.
+            //- Use bool true for Account = Checking
+            //- Sort in Ascending order
+            //- Tally transactions to determine balance.
+            //- Console.WriteLine the line listing each transaction
+            //- loop generating the following:
+            //- Account, Transaction, Date, Amount
+            //- Console.WriteLine the Balance: $X
+            //- Return to menu
+
 
             var checkingBalance = (0);
 
@@ -159,7 +191,7 @@ namespace FirstBankOfSuncoast
                     transaction.Date = DateTime.Now;
                     transaction.Account = "Checking";
                     transaction.Type = "Withdraw";
-                    transaction.Amount = PromptForInteger("Amount: $ ");
+                    transaction.Amount = PromptForNegativeInteger("Amount: $ ");
 
                     //- Check balance report for available funds
                     // - Tally all transaction amounts through the new variable amount from savings account running balance (var checkingBalance).
@@ -244,7 +276,7 @@ namespace FirstBankOfSuncoast
                     transaction.Date = DateTime.Now;
                     transaction.Account = "Savings";
                     transaction.Type = "Withdraw";
-                    transaction.Amount = PromptForInteger("Amount: $ ");
+                    transaction.Amount = PromptForNegativeInteger("Amount: $ ");
                     //- Check balance report for available funds
                     // - Tally all transaction amounts through the new variable amount from savings account running balance (var checkingBalance).
                     //- Deduct transaction amount from balance
