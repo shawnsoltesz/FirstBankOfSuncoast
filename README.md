@@ -10,123 +10,33 @@ E -
 
 Savings Deposit: Process a deposit in the amount of $20 and impact the account balance accordingly.
 
-Savings Withdraw: Process a withdraw in the amount of $4 and impact the account balance accordingly.
+Savings Withdraw: Process a withdraw in the amount of $4 and impact the account balance accordingly. Convert the value to negative for easy of computing balance.
 
 Savings Balance: use transaction list for withdraw and deposits to track and compute balance when needed. Using the two transaction examples above, and assuming the order is 1.) deposit and then 2.) withdraw, the balance should initially display $20 and then $16.
 
 Checking Deposit: Process a deposit in the amount of $20 and impact the account balance accordingly.
 
-Checking Withdraw: Process a withdraw in the amount of $4 and impact the account balance accordingly.
+Checking Withdraw: Process a withdraw in the amount of $4 and impact the account balance accordingly. Convert the value to negative for easy of computing balance.
 
 Checking Balance: use transaction list for withdraw and deposits to track and compute balance when needed. Using the two transaction examples above, and assuming the order is 1.) deposit and then 2.) withdraw, the balance should initially display $20 and then $16.
 
 No negative balance: in the event a withdraw transaction will cause the account balance to go negative, it needs to be declined. Therefore logic is needed to check the proposed transaction against the current balance of the specific account - checking or savings, to determine whether it is permissible. Example, if checking account has a balance of $16, but a transaction is processing for a $20 withdraw, the transaction should be declined.
 
-Ongoing transactions - need to keep Checking and Savings transactions separate, but tracked together in the SINGLE list <Transaction>
+The app will compute balances by examining all the transactions in the history. For instance, if a user deposits 10 to their savings, then withdraws 8 from their savings, then deposits 25 to their checking, they have three transactions to consider. Compute the checking and saving balance, using the transaction list, when needed. In this case, their savings balance is 2 and their checking balance is 25.
 
-CSV file: the app must track transactions in its memory and upon completing each transaction. Have a second command to update CSV based on transactions while app was open. Then upon restarting the app, the data should be loaded to allow for instant and real time access to transaction history and account balances.
+Ongoing transactions - need to keep Checking and Savings transactions separate, but tracked together in the SINGLE list <Transaction>
 
 D - CREATE _ REMOVE _ UPDATE \* D
 
-The app will compute balances by examining all the transactions in the history. For instance, if a user deposits 10 to their savings, then withdraws 8 from their savings, then deposits 25 to their checking, they have three transactions to consider. Compute the checking and saving balance, using the transaction list, when needed. In this case, their savings balance is 2 and their checking balance is 25.
+CSV file: the app must track transactions in its memory and upon completing each transaction. Have a second command to update CSV based on transactions while app was open. Then upon restarting the app, the data should be loaded to allow for instant and real time access to transaction history and account balances.
 
 The application should store a history of transactions in a SINGLE List<Transaction>.
 
 Design the <Transaction> class to support both checking and savings accounts, as well as deposit and withdraw transactions. (like the Blackjack app tracked dealer and player cards in one lists -
 
-Transaction Flows:
+3. Date [Date]
 
-- Checking Deposit >
-  -- User enters amount >
-  --- Create a transaction entry
-
-Checking Withdraw >
-
-- User enters amount >
-- Check balance report for available funds
-  - use LINQ to tally all <AccountT>
-
-If sufficient funds,
-
-- deduct transacation amount against
-- create a transaction entry
-- deduct amount from balance
-
-If denied, cancel transaction
-
-Savings Deposit >
-
-- User enters amount >
-  -- Create a transaction entry
-
-Savings Withdraw >
-
-- User enters amount >
-  -- Check balance report for available funds
-
-If approved,
-
-- create a transaction entry
-- deduct amount from balance
-
-If denied, cancel transaction
-
-Transaction Type includes:
-
-a. Checking
-
-1.  Deposit
-2.  Withdraw
-
-If 1 = Transaction Type = Deposit (+)
-string typeCheckingDeposit = Deposit
-string accountCheckingDeposit = Checking
-
-If 2 = Transaction Type = Withdraw (-)
-string typeCheckingWithdraw = Withdraw
-string accountCheckingWithdraw = Checking
-
-b. Savings 4. Deposit 5. Withdraw
-
-b. Savings
-
-If 4 = Transaction Type = Deposit (+)
-string typeSavingsDeposit = Deposit
-string accountSavingsDeposit = Savings
-
-If 5 = Transaction Type = Withdraw (-)
-string typeSavingsWithdraw = Withdraw
-string accountSavingsWithdraw = Savings
-
-2. Account Type [string] - could be a bool, but only T/F options and not suitable for scale
-   a. Checking
-
-   1. Deposit
-   2. Withdraw
-
-   If 1 = Transaction Type = Deposit (+)
-   string typeCheckingDeposit = Deposit
-   string accountCheckingDeposit = Checking
-
-   If 2 = Transaction Type = Withdraw (-)
-   string typeCheckingWithdraw = Withdraw
-   string accountCheckingWithdraw = Checking
-
-b. Savings 4. Deposit 5. Withdraw
-
-b. Savings
-
-If 4 = Transaction Type = Deposit (+)
-string typeSavingsDeposit = Deposit
-string accountSavingsDeposit = Savings
-
-If 5 = Transaction Type = Withdraw (-)
-string typeSavingsWithdraw = Withdraw
-string accountSavingsWithdraw = Savings
-
-3. Date [double]
-
-   double date = {Date}
+   Date = DateTime.Now
 
 4. Amount [integer]
 
@@ -174,36 +84,8 @@ Transaction History derived from one Transaction list: LINQ list capabilities
 
 Memory and CSV file updates - The application should, after each transaction, write all the transactions to a file. This is the same file the application loads when the app is initiated.
 
-A -
+Transaction Class -
 
-Display Greeting
-
-- Welcome to First Bank of Suncoast
-
-Transaction options - display all on one screen, do not create a decision tree with multiple layers for a drill down to accomplish a task.
-
-- Menu option for user to make a deposit transaction for checking.
-- Menu option for user to make a deposit transaction for savings.
-- Menu option for user to make a withdraw transaction for checking.
-- Menu option for user to make a withdraw transaction for savings.
-- Menu option for user to see the balance of checking account.
-- Menu option for user to see the balance of savings account.
-
-(Potential Layout) -
-
-Checking:
-
-- 1. Deposit
-- 2. Withdraw
-- 3. Statement
-
-Savings:
-
-- 4. Deposit
-- 5. Withdraw
-- 6. Statement
-
-Transaction Class
 Date
 Account (Checking or Savings)
 Type (Deposit or Withdraw)
@@ -218,29 +100,114 @@ newTransaction = new Account ();
 newTransaction = new Type ();
 newTransaction = new Amount ();
 
-If 1: (Checking Deposit)
+A -
 
-transaction.Date = {Date.Time};
-transaction.Account = Checking
-transaction.Type = Deposit
-transaction.Amount = new Amount ();
+Display Greeting
 
-transactions.Add(transaction);
+Transaction options - display all on one screen, do not create a decision tree with multiple layers for a drill down to accomplish a task.
 
-Prevent a withdraw for an amount that is greater than the account balance. Neither checking or savings balances should never display a negative balance.
+Checking
 
-Statement
+- 1. Menu option for user to make a deposit transaction for checking.
+- 2. Menu option for user to make a withdraw transaction for checking.
+- 3. Menu option for user to see the balance of checking account.
 
-If
+Savings
 
-Account History: Console.WriteLine generated based on date range entered by customer through Console.Read. Use LINQ for sorting based on transaction date.
+- 4. Menu option for user to make a deposit transaction for savings.
+- 5. Menu option for user to make a withdraw transaction for savings.
+- 6. Menu option for user to see the balance of savings account.
 
-- Checking
-- Savings
+Transaction Flows based on menu options
 
-Statement (preformatted report that displays transaction history for last >= 30 days) Utilize LINQ expressions for pulling last 30 days and then sorting in ascending order.
+1. Checking Deposit >
 
-- Checking
-- Savings
+- Date, Account and Type auto set
+- User enters amount >
+- Create a transaction entry
+- Print Receipt
+  - include var "checkingBalance" computed for the balance/statement for Menu option #3
+- Return to menu
 
-When prompting for an amount to withdraw, always compare the amount against the balance to ensure the balance amount after the transaction remains positive. Negative balances are forbidden. Upon processing the transaction, the balance value we store in the Transaction list shall be positive as well. (e.g. a Transaction that is a withdraw of $25 both inputs and records a positive $25)
+2. Checking Withdraw >
+
+- Date, Account and Type auto set
+- User enters amount > convert to a negative value
+  - Check balance report for available funds
+    - Tally all transaction amounts through the new variable amount from savings account running balance (var checkingBalance).
+    - Deduct transaction amount from balance
+
+If negative balance is >0 = insufficient funds:
+
+- cancel transaction
+- Print Receipt
+  - Need to add an extra line stating insufficient funds and transaction cancelled
+    -include var "checkingBalance" computed for the balance/statement for computed balance.
+  - Return to menu
+
+If positive balance is <=0 = approved:
+
+- create a transaction entry as a negative value
+- print Receipt
+- Return to menu
+
+3. Checking Balance/Statement
+
+- new var checkingBalance = LINQ expression bool true = Checking, to gather all transactions for Account - Checking.
+  - Use bool true for Account = Checking
+- Sort in Ascending order
+- Tally transactions to determine balance.
+- Console.WriteLine the line listing each transaction
+  - loop generating the following:
+    - Account, Transaction, Date, Amount
+- Console.WriteLine the Balance: $X
+- Return to menu
+
+4. Savings Deposit >
+
+- Date, Account and Type auto set
+- User enters amount >
+- Create a transaction entry
+- Print Receipt
+  - include var "savingsBalance" computed for the balance/statement for Menu option #6
+- Return to menu
+
+5. Savings Withdraw >
+
+- Date, Account and Type auto set
+- User enters amount > convert to a negative value
+  - Check balance report for available funds
+    - Tally all balances and deduct new variable amount from savings account running balance var savingsBalance. LINQ tally all <AccountT> for report
+
+If negative balance is >0 - insufficient funds -
+
+- cancel transaction
+- Print Receipt
+  - Need to add an extra line stating insufficient funds and transaction cancelled
+- Return to menu
+
+If positive balance is <=0 - approved = -
+
+- create a transaction entry as a negative value
+- Print receipt
+  - include var "savingsBalance" computed for the balance/statement for Menu option #6
+- Return to menu
+
+6. Savings Balance/Statement
+
+- new var checkingBalance = LINQ expression bool true = Savings, to gather all transactions for Account - Savings.
+  - Use bool true for Account = Savings
+- Sort in Ascending order
+- Tally transactions to determine balance.
+- Console.WriteLine the line listing each transaction
+  - loop generating the following:
+    - Account, Transaction, Date, Amount
+- Console.WriteLine the Balance: $
+- Return to menu
+
+7. Quit
+
+- Console.WriteLine("Goodbye!")
+- break;
+
+CSV adaptation
