@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace FirstBankOfSuncoast
 {
-
     class Transaction
     {
         public DateTime Date { get; set; }
@@ -14,9 +13,7 @@ namespace FirstBankOfSuncoast
     }
     class Program
     {
-
         static void DisplayGreeting()
-
         {
             Console.WriteLine("\n\n");
 
@@ -41,7 +38,6 @@ namespace FirstBankOfSuncoast
             Console.WriteLine("Please input the number from the menu and press ENTER.\n");
 
         }
-
         static string PromptForString(string prompt)
         {
             Console.Write(prompt);
@@ -50,7 +46,6 @@ namespace FirstBankOfSuncoast
             return userInput;
 
         }
-
         static int PromptForInteger(string prompt)
         {
             Console.Write(prompt);
@@ -67,7 +62,6 @@ namespace FirstBankOfSuncoast
                 return 0;
             }
         }
-
         static int PromptForNegativeInteger(string prompt)
         {
             Console.Write(prompt);
@@ -84,7 +78,6 @@ namespace FirstBankOfSuncoast
                 return 0;
             }
         }
-
         static void Main(string[] args)
         {
             var transactions = new List<Transaction>();
@@ -95,22 +88,12 @@ namespace FirstBankOfSuncoast
             // var areAnyOldMovies = movies.Any(movie => movie.ReleasedDate.Year < 1965);
             //var NewCheckingBalance = transactions.Sum(transaction.Account => transaction.Account = "Checking");
 
-
-
-            //- new var checkingBalance = LINQ expression bool true = Checking, to gather all transactions for Account - Checking.
-            //- Use bool true for Account = Checking
-            //- Sort in Ascending order
+            //- new var checkingBalance = LINQ expression Sum = Checking, to gather all transactions for Account - Checking.
             //- Tally transactions to determine balance.
             //- Console.WriteLine the line listing each transaction
-            //- loop generating the following:
-            //- Account, Transaction, Date, Amount
-            //- Console.WriteLine the Balance: $X
-            //- Return to menu
 
+            var checkingBalance = 0;
 
-            var checkingBalance = (0);
-
-            foreach (var Transaction in transactions)
             {
                 if (transaction.Account == "Checking" && transaction.Type == "Deposit")
 
