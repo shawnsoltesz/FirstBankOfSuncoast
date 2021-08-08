@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace FirstBankOfSuncoast
 {
@@ -81,6 +85,23 @@ namespace FirstBankOfSuncoast
         static void Main(string[] args)
         {
             var transactions = new List<Transaction>();
+
+            if (File.Exists("transactions.csv"))
+
+            {
+                var fileReader = new StreamReader("transactions.csv");
+
+                var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+
+                {
+                    HasHeaderRecord = true,
+                };
+
+                var csvReader = new CsvReader(fileReader, config);
+
+                transactions = csvReader.GetRecords<Transaction>().ToList();
+
+            }
 
             var transaction = new Transaction();
 
@@ -322,10 +343,16 @@ namespace FirstBankOfSuncoast
                     Console.WriteLine("\n\n\nThank you for banking with First Bank of Suncoast");
                     keepGoing = false;
                 }
-
             }
+
+            var fileWriter = new StreamWriter("transactions.csv");
+            var csvWriter = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
+            csvWriter.WriteRecords(transactions);
+            fileWriter.Close();
         }
+
     }
 }
+
 
 

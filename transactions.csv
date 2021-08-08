@@ -1,0 +1,15 @@
+Date,Account,Type,Amount
+08/08/2021 17:42:06,Checking,Deposit,25
+08/08/2021 17:42:06,Checking,Withdraw,-25
+08/07/2021 17:42:06,Checking,Deposit,30
+08/06/2021 17:42:06,Checking,Deposit,20
+08/04/2021 17:42:06,Checking,Withdraw,-10
+08/02/2021 17:42:06,Checking,Withdraw,30
+08/01/2021 17:42:06,Savings,Deposit,25
+08/08/2021 17:42:06,Savings,Deposit,25
+08/08/2021 17:42:06,Savings,Withdraw,-25
+08/07/2021 17:42:06,Savings,Deposit,30
+08/06/2021 17:42:06,Savings,Deposit,20
+08/04/2021 17:42:06,Savings,Withdraw,-10
+08/02/2021 17:42:06,Savings,Withdraw,30
+08/01/2021 17:42:06,Savings,Deposit,25
