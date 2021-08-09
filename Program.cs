@@ -106,47 +106,21 @@ namespace FirstBankOfSuncoast
             var transaction = new Transaction();
 
             var date = new DateTime(2008, 3, 15);
-            // var areAnyOldMovies = movies.Any(movie => movie.ReleasedDate.Year < 1965);
-            //var NewCheckingBalance = transactions.Sum(transaction.Account => transaction.Account = "Checking");
 
-            //- new var checkingBalance = LINQ expression Sum = Checking, to gather all transactions for Account - Checking.
-            //- Tally transactions to determine balance.
-            //- Console.WriteLine the line listing each transaction
+            //Checking Balance
+            var totalCheckingDeposits = transactions.Where(transaction => transaction.Account == "Checking" && transaction.Type == "Deposit").Sum(transaction => transaction.Amount);
 
-            var checkingBalance = 0;
+            var totalCheckingWithdraw = transactions.Where(transaction => transaction.Account == "Checking" && transaction.Type == "Withdraw").Sum(transaction => transaction.Amount);
 
-            {
-                if (transaction.Account == "Checking" && transaction.Type == "Deposit")
+            var checkingBalance = totalCheckingDeposits - totalCheckingWithdraw;
 
-                {
-                    checkingBalance += transaction.Amount;
-                }
+            //Savings Balance
+            var totalSavingsDeposits = transactions.Where(transaction => transaction.Account == "Savings" && transaction.Type == "Deposit").Sum(transaction => transaction.Amount);
 
-                if (transaction.Account == "Checking" && transaction.Type == "Withdraw")
+            var totalSavingsWithdraw = transactions.Where(transaction => transaction.Account == "Savings" && transaction.Type == "Withdraw").Sum(transaction => transaction.Amount);
 
-                {
-                    checkingBalance -= transaction.Amount;
-                }
+            var savingsBalance = totalSavingsDeposits - totalSavingsWithdraw;
 
-            }
-
-            var savingsBalance = (0);
-
-            foreach (var Transaction in transactions)
-
-            {
-                if (transaction.Account == "Savings" && transaction.Type == "Deposit")
-
-                {
-                    savingsBalance += transaction.Amount;
-                }
-
-                if (transaction.Account == "Savings" && transaction.Type == "Withdraw")
-
-                {
-                    savingsBalance -= transaction.Amount;
-                }
-            }
 
             DisplayGreeting();
 
@@ -249,8 +223,12 @@ namespace FirstBankOfSuncoast
                 else if (userChoice == "3")
 
                 {
-                    Console.WriteLine($"Your checking account balance is: {checkingBalance}");
+                    Console.WriteLine($"Your balance is ${checkingBalance}");
+
                     break;
+
+
+
                 }
 
                 else if (userChoice == "4")
@@ -333,8 +311,8 @@ namespace FirstBankOfSuncoast
                 else if (userChoice == "6")
 
                 {
-                    Console.WriteLine($"Your savings account balance is: {savingsBalance}");
-                    break;
+                    Console.WriteLine($"Your savings account balance is ${savingsBalance}");
+
                 }
 
                 else
