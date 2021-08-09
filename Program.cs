@@ -66,22 +66,7 @@ namespace FirstBankOfSuncoast
                 return 0;
             }
         }
-        static int PromptForNegativeInteger(string prompt)
-        {
-            Console.Write(prompt);
-            int userInput;
-            var isThisGoodInput = Int32.TryParse(Console.ReadLine(), out userInput);
 
-            if (isThisGoodInput)
-            {
-                return userInput * -1;
-            }
-            else
-            {
-                //Console.WriteLine("This is not a valid entry. Action cancelled.");
-                return 0;
-            }
-        }
         static void Main(string[] args)
         {
             var transactions = new List<Transaction>();
@@ -169,7 +154,7 @@ namespace FirstBankOfSuncoast
                     transaction.Date = DateTime.Now;
                     transaction.Account = "Checking";
                     transaction.Type = "Withdraw";
-                    transaction.Amount = PromptForNegativeInteger("Amount: $ ");
+                    transaction.Amount = PromptForInteger("Amount: $ ");
 
                     //- Check balance report for available funds
                     // - Tally all transaction amounts through the new variable amount from savings account running balance (var checkingBalance).
@@ -258,7 +243,7 @@ namespace FirstBankOfSuncoast
                     transaction.Date = DateTime.Now;
                     transaction.Account = "Savings";
                     transaction.Type = "Withdraw";
-                    transaction.Amount = PromptForNegativeInteger("Amount: $ ");
+                    transaction.Amount = PromptForInteger("Amount: $ ");
                     //- Check balance report for available funds
                     // - Tally all transaction amounts through the new variable amount from savings account running balance (var checkingBalance).
                     //- Deduct transaction amount from balance
