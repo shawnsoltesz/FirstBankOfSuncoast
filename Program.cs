@@ -242,12 +242,12 @@ namespace FirstBankOfSuncoast
                             //- Console.WriteLine the line listing each transaction
                             //- loop generating the following linelisted:
                             //- Account, Transaction, Amount
-                            Console.WriteLine($"\n{checkingTransaction.Account}, {checkingTransaction.Type}, {checkingTransaction.Amount}");
+                            Console.WriteLine($"\n{checkingTransaction.Account}, {checkingTransaction.Type}, ${checkingTransaction.Amount}");
                         }
 
                         //- Tally transactions to determine balance.
                         //- Console.WriteLine the Balance: $
-                        Console.WriteLine($"Your checking account balance is ${checkingBalance}\n\n");
+                        Console.WriteLine($"\nYour checking account balance is ${checkingBalance}\n\n");
                         Console.WriteLine("Thank you for banking with First Bank of Suncoast");
 
                         // - Return to menu
@@ -363,12 +363,12 @@ namespace FirstBankOfSuncoast
                         //- Console.WriteLine the line listing each transaction
                         //- loop generating the following linelisted:
                         //- Account, Transaction, Amount
-                        Console.WriteLine($"\n{savingTransaction.Account}, {savingTransaction.Type}, {savingTransaction.Amount}");
+                        Console.WriteLine($"\n{savingTransaction.Account}, {savingTransaction.Type}, ${savingTransaction.Amount}");
                     }
 
                     //- Tally transactions to determine balance.
                     //- Console.WriteLine the Balance: $
-                    Console.WriteLine($"Your savings account balance is ${savingsBalance}\n\n");
+                    Console.WriteLine($"\nYour savings account balance is ${savingsBalance}\n\n");
                     Console.WriteLine("Thank you for banking with First Bank of Suncoast");
 
                     // - Return to menu
