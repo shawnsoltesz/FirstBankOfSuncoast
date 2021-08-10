@@ -339,7 +339,25 @@ namespace FirstBankOfSuncoast
                 else if (userChoice == "6")
 
                 {
-                    Console.WriteLine($"Your savings account balance is ${savingsBalance}");
+
+                    //- Use LINQ .Where for Account = Savings
+                    var statementSavings = transactions.Where(transaction => transaction.Account == "Savings");
+
+                    foreach (var statementSavings in transactions)
+
+                    {
+                        //- Console.WriteLine the line listing each transaction
+                        //- loop generating the following:
+                        //- Account, Transaction, Amount
+                        Console.WriteLine($"\n{statementSavings.Account}, {statementSavings.Type}, {statementSavings.Amount}");
+                    }
+
+                    //- Tally transactions to determine balance.
+                    //- Console.WriteLine the Balance: $
+                    Console.WriteLine($"Your savings account balance is ${savingsBalance}\n\n");
+                    Console.WriteLine("Thank you for banking with First Bank of Suncoast");
+
+                    // - Return to menu
                     break;
 
                 }
