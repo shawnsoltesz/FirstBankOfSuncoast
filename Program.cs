@@ -142,7 +142,7 @@ namespace FirstBankOfSuncoast
                     transaction.Amount = PromptForInteger("Amount: $ ");
 
                     //- Check balance report for available funds
-                    // - Tally all transaction amounts through the new variable amount from savings account running balance (var checkingBalance).
+                    //- Tally all transaction amounts through the new variable amount from savings account running balance (var checkingBalance).
                     //- Deduct transaction amount from balance
                     var checkingBalance = ComputeCheckingBalance(transactions);
 
@@ -155,8 +155,8 @@ namespace FirstBankOfSuncoast
 
                         //- Print Receipt
                         //- cancel transaction
-
-                        Console.WriteLine("\n\n######## -RECEIPT- ########\n\n");
+                        Console.WriteLine($"Transaction cancelled due to insufficient funds.\n");
+                        Console.WriteLine("\n######## -RECEIPT- ########\n");
                         Console.WriteLine("**Transaction Declined**");
                         Console.WriteLine("Reason: Insufficient Funds\n");
                         Console.WriteLine($"Date: {transaction.Date}");
@@ -177,6 +177,8 @@ namespace FirstBankOfSuncoast
 
                         transactions.Add(transaction);
                         //need to update the csv to reflect in the {checkingBalance} below
+
+                        checkingBalance = ComputeCheckingBalance(transactions);
 
                         Console.WriteLine("\n\n######## -RECEIPT- ########\n\n");
                         Console.WriteLine("Transaction Approved\n");
@@ -232,7 +234,7 @@ namespace FirstBankOfSuncoast
                     Console.WriteLine($"Account: {transaction.Account}");
                     Console.WriteLine($"Transaction: {transaction.Type}");
                     Console.WriteLine($"Amount: ${transaction.Amount}");
-                    Console.WriteLine($"Balance: {savingsBalance}\n");
+                    Console.WriteLine($"Balance: ${savingsBalance}\n");
                     Console.WriteLine("\nThank you for banking with First Bank of Suncoast\n");
                 }
 
@@ -268,7 +270,6 @@ namespace FirstBankOfSuncoast
                         Console.WriteLine($"Amount: ${transaction.Amount}");
                         Console.WriteLine($"Balance: ${savingsBalance}\n");
                         Console.WriteLine("\nThank you for banking with First Bank of Suncoast\n");
-
                     }
 
                     //If positive balance is <=0 = approved:
@@ -280,6 +281,8 @@ namespace FirstBankOfSuncoast
                         //- print Receipt
 
                         transactions.Add(transaction);
+
+                        savingsBalance = ComputeSavingsBalance(transactions);
 
                         Console.WriteLine("\n\n######## -RECEIPT- ########\n\n");
                         Console.WriteLine("Transaction Approved\n");
@@ -308,14 +311,12 @@ namespace FirstBankOfSuncoast
                     }
 
                     //- Tally transactions to determine balance.
-                    //- Console.WriteLine the Balance: $
-
                     int savingsBalance = ComputeSavingsBalance(transactions);
 
+                    //- Console.WriteLine the Balance: $
                     Console.WriteLine($"\nYour savings account balance is ${savingsBalance}\n\n");
                     Console.WriteLine("Thank you for banking with First Bank of Suncoast");
                     // - Return to menu
-
                 }
 
                 var fileWriter = new StreamWriter("transactions.csv");
